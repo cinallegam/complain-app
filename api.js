@@ -32,7 +32,7 @@ const sql = async (path) => {
     }
 }
 
-(async () => { app.locals.db = await sql("./db.db") })();
+(async () => { app.locals.db = await sql("db.db") })();
 
 const tokenHandle = async (req, res, next) => {
     try {

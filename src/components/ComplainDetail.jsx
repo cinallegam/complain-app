@@ -173,7 +173,7 @@ function ComplainDetail() {
             <div style={{ marginTop: "1rem" }} className="complain-input-group">
               <span style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
                 <label style={{ fontWeight: "bold" }}>{"ผู้ร้องทุกข์ : "}</label>
-                {state?.data.title}{state?.data.firstname}{" "}{state?.data.lastname}
+                {state?.data.prefixname}{state?.data.firstname}{" "}{state?.data.lastname}
               </span>
             </div>
           </div>

@@ -96,8 +96,8 @@ function ComplainTrack() {
           <div className="complain-form-body">
             <div className="horizontal-divider"></div>
             <div className="complain-input-group">
-              <label htmlFor="card">{"หมายเลขเรื่องร้องทุกข์"}<span style={{ fontWeight: "bold", color: "red" }}>{" * "}</span></label>
-              <input id="card" maxLength={50} value={track} onChange={ e => setTrack(e.target.value)}/>
+              <label htmlFor="id">{"หมายเลขเรื่องร้องทุกข์"}<span style={{ fontWeight: "bold", color: "red" }}>{" * "}</span></label>
+              <input id="id" maxLength={50} value={track} onChange={ e => setTrack(e.target.value)}/>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@ function ComplainTrack() {
               <div style={{ marginTop: "1rem" }} className="complain-input-group">
                 <span style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
                   <label style={{ fontWeight: "bold" }}>{"ผู้ร้องทุกข์ : "}</label>
-                  {trackData.title}{trackData.firstname}{" "}{trackData.lastname}
+                  {trackData.prefixname}{trackData.firstname}{" "}{trackData.lastname}
                 </span>
               </div>
             </div>

@@ -1,4 +1,4 @@
-export const Title = [
+export const PrefixName = [
     { value: "นาย", label: "นาย" },
     { value: "นาง", label: "นาง" },
     { value: "นางสาว", label: "นางสาว" },

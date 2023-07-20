@@ -1,7 +1,7 @@
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 import { useMemo, useState, useRef, useContext } from "react";
-import { Title, Sector, Type, Channel } from "../libs/OptionList";
+import { PrefixName, Sector, Type, Channel } from "../libs/OptionList";
 import { Province } from "../libs/ProvinceList";
 import { District } from "../libs/DistrictList";
 import { SubDistrict } from "../libs/SubDistrictList";
@@ -29,8 +29,8 @@ function ComplainForm() {
   const [ subDistrictSymbol, setSubDistrictSymbol ] = useState("");
   const [ complainInfo, setComplainInfo ] = useState({
     id: generateID,
-    card: "",
-    title: "",
+    citizenid: "",
+    prefixname: "",
     firstname: "",
     lastname: "",
     address: "",
@@ -72,8 +72,8 @@ function ComplainForm() {
 
   const saveButtonEnable = useMemo(() => {
     const list = [
-      "card",
-      "title",
+      "citizenid",
+      "prefixname",
       "firstname",
       "lastname",
       "address",
@@ -121,8 +121,8 @@ function ComplainForm() {
   const cancelHandle = () => {
     setComplainInfo({
       id: "",
-      card: "",
-      title: "",
+      citizenid: "",
+      prefixname: "",
       firstname: "",
       lastname: "",
       address: "",
@@ -192,18 +192,18 @@ function ComplainForm() {
         <div className="complain-form-body">
           <div className="horizontal-divider"></div>
           <div className="complain-input-group">
-            <label htmlFor="card">{"หมายเลขคำร้อง "}<span style={{ fontWeight: "bold", color: "red" }}>{"*"}</span>{" (กรุณาบันทึกไว้)"}</label>
+            <label htmlFor="id">{"หมายเลขคำร้อง "}<span style={{ fontWeight: "bold", color: "red" }}>{"*"}</span>{" (กรุณาบันทึกไว้)"}</label>
             <input readOnly id="id" style={{ width: "20rem" }} value={complainInfo.id}/>
           </div>
           <div className="complain-input-group">
-            <label htmlFor="card">{"เลขบัตรประชาชน "}<span style={{ fontWeight: "bold", color: "red" }}>{"*"}</span></label>
-            <input id="card" maxLength={17} value={complainInfo.card} onChange={ e => { setComplainInfo(prev => ({...prev, card: isNaN(e.target.value) ? prev.card : e.target.value}))} }/>
+            <label htmlFor="citizenid">{"เลขบัตรประชาชน "}<span style={{ fontWeight: "bold", color: "red" }}>{"*"}</span></label>
+            <input id="citizenid" maxLength={17} value={complainInfo.citizenid} onChange={ e => { setComplainInfo(prev => ({...prev, citizenid: isNaN(e.target.value) ? prev.citizenid : e.target.value}))} }/>
           </div>
           <div className="complain-from-group">
             <div className="complain-input-group">
-              <label htmlFor="title">{"คำนำหน้านาม "}<span style={{ fontWeight: "bold", color: "red" }}>{"*"}</span></label>
+              <label htmlFor="prefixname">{"คำนำหน้านาม "}<span style={{ fontWeight: "bold", color: "red" }}>{"*"}</span></label>
               <div style={{ width: "10rem" }}>
-                <Select placeholder="เลือก..." className="title-option" isSearchable={true} options={Title} onChange={ e => setComplainInfo(prev => ({ ...prev, title: e.value })) }/>
+                <Select placeholder="เลือก..." className="prefixname-option" isSearchable={true} options={PrefixName} onChange={ e => setComplainInfo(prev => ({ ...prev, prefixname: e.value })) }/>
               </div>
             </div>
             <div className="complain-input-group">

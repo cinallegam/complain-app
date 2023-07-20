@@ -70,20 +70,20 @@ router.get("/report", [ tokenHandle ], async (req, res, next) => {
 
 router.post("/report", async (req, res, next) => {
     try {
-        const { card, title, firstname, lastname, address, subdistrict, district, province, phone, detail, channel } = req.body;
+        const { citizenid, prefixname, firstname, lastname, address, subdistrict, district, province, phone, detail, channel } = req.body;
         const db = req.app.locals.db;
         const result = await db.run(`INSERT INTO report(
-            id, card, title, firstname, lastname, address, village, road, 
+            id, citizenid, prefixname, firstname, lastname, address, village, road, 
             alley, subdistrict, district, province, phone, email, line, 
             detail, channel, sector, type, image, progress, createdAt 
         ) VALUES (
-            :id, :card, :title, :firstname, :lastname, :address, :village, :road, 
+            :id, :citizenid, :prefixname, :firstname, :lastname, :address, :village, :road, 
             :alley, :subdistrict, :district, :province, :phone, :email, :line, 
             :detail, :channel, :sector, :type, :image, :progress, :createdAt 
         )`, {
             ":id": req.body.id, 
-            ":card": card, 
-            ":title": title, 
+            ":citizenid": citizenid, 
+            ":prefixname": prefixname, 
             ":firstname": firstname, 
             ":lastname": lastname, 
             ":address": address, 
@@ -113,11 +113,11 @@ router.post("/report", async (req, res, next) => {
 router.put("/report", [ tokenHandle ], async (req, res, next) => {
     try {
         const db = req.app.locals.db;
-        const { id, card, title, firstname, lastname, address, subdistrict, district, province, phone, detail, channel } = req.body;
+        const { id, citizenid, prefixname, firstname, lastname, address, subdistrict, district, province, phone, detail, channel } = req.body;
         const findReport = await db.all(`SELECT * FROM report WHERE id = "${id}"`);
         const result = await db.run(`UPDATE report SET 
-            card = :card, 
-            title = :title, 
+            citizenid = :citizenid, 
+            prefixname = :prefixname, 
             firstname = :firstname, 
             lastname = :lastname, 
             address = :address, 
@@ -138,8 +138,8 @@ router.put("/report", [ tokenHandle ], async (req, res, next) => {
             progress = :progress 
             WHERE id = "${id}" 
         `, {
-            ":card": card || findReport[0].card, 
-            ":title": title || findReport[0].title, 
+            ":citizenid": citizenid || findReport[0].citizenid, 
+            ":prefixname": prefixname || findReport[0].prefixname, 
             ":firstname": firstname || findReport[0].firstname, 
             ":lastname": lastname || findReport[0].lastname, 
             ":address": address || findReport[0].address, 
@@ -169,7 +169,7 @@ router.put("/report", [ tokenHandle ], async (req, res, next) => {
 router.delete("/report/:id", [ tokenHandle ], async (req, res, next) => {
     try {
         const db = req.app.locals.db;
-        const result = await db.run(`UPDATE report SET permission = "Revoke" WHERE id = "${req.params.id}"`);
+        const result = await db.run(`UPDATE report SET state = "Revoke" WHERE id = "${req.params.id}"`);
         res.status(200).json(result);
     } catch (error) {
         next(error);
@@ -240,7 +240,7 @@ router.post("/staff/login", async (req, res, next) => {
         if(Object.values(req.body).filter(elem => elem.length !== 0).length !== 2) throw new Error("Information invalid.");
         const db = req.app.locals.db;
         const findUser = await db.all(`SELECT * FROM staff WHERE username = "${username}"`);
-        if(findUser.length !== 1 || findUser[0].permission !== "Invoke") throw new Error("ไม่พบชื่อผู้ใช้");
+        if(findUser.length !== 1 || findUser[0].state !== "Invoke") throw new Error("ไม่พบชื่อผู้ใช้");
         const passwordValid = comparePassword(password, findUser[0].password);
         if(!passwordValid) throw new Error("รหัสผ่านไม่ถูกต้อง");
         const accessToken = JWT.sign({ 

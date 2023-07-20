@@ -161,7 +161,6 @@ router.put("/report", [ tokenHandle ], async (req, res, next) => {
         });
         res.status(200).json(result);
     } catch (error) {
-        console.log(error)
         next(error);
     }
 });
@@ -220,7 +219,6 @@ router.get("/track/:id", async (req, res, next) => {
         const db = req.app.locals.db;
         const resultReport = await db.all(`SELECT * FROM report WHERE id = "${req.params.id}"`);
         const resultHistory = await db.all(`SELECT * FROM history WHERE rid = "${req.params.id}"`);
-        console.log(req.params)
         res.status(200).json({...resultReport[0], history: [...resultHistory]});
     } catch (error) {
         next(error);

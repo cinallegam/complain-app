@@ -37,7 +37,6 @@ function ComplainTrack() {
         headers: { Authorization: localStorage.getItem("atks") },
       });
       if (result.status !== 200) throw new Error(result.data);
-      console.log(result)
       sleep(2000);
       setLoading(false);
       if (result.data.id) {

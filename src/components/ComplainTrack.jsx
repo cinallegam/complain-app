@@ -132,6 +132,14 @@ function ComplainTrack() {
             <div className="complain-from-group">
               <div style={{ marginTop: "1rem" }} className="complain-input-group">
                 <span style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
+                  <label style={{ fontWeight: "bold" }}>{"หมายเลขร้องทุกข์ : "}</label>
+                  {trackData.id}
+                </span>
+              </div>
+            </div>
+            <div className="complain-from-group">
+              <div className="complain-input-group">
+                <span style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
                   <label style={{ fontWeight: "bold" }}>{"ผู้ร้องทุกข์ : "}</label>
                   {trackData.prefixname}{trackData.firstname}{" "}{trackData.lastname}
                 </span>

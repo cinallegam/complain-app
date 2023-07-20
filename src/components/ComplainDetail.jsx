@@ -169,8 +169,16 @@ function ComplainDetail() {
       </div>
       <div className="complain-form-body-wrapper">
         <div className="complain-form-body" style={{ marginLeft: "1.5rem", marginRight: "1.5rem" }}>
-          <div className="complain-from-group">
+        <div className="complain-from-group">
             <div style={{ marginTop: "1rem" }} className="complain-input-group">
+              <span style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
+                <label style={{ fontWeight: "bold" }}>{"หมายเลขร้องทุกข์ : "}</label>
+                {state?.data.id}
+              </span>
+            </div>
+          </div>
+          <div className="complain-from-group">
+            <div className="complain-input-group">
               <span style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
                 <label style={{ fontWeight: "bold" }}>{"ผู้ร้องทุกข์ : "}</label>
                 {state?.data.prefixname}{state?.data.firstname}{" "}{state?.data.lastname}

@@ -62,7 +62,7 @@ router.get("/report", [ tokenHandle ], async (req, res, next) => {
     try {
         const db = req.app.locals.db;
         const results = await db.all(`SELECT * FROM report WHERE 1 = 1`);
-        res.status(200).json(results);
+        res.status(200).json(results.reverse());
     } catch (error) {
         next(error);
     }

@@ -38,7 +38,8 @@ function ComplainTrack() {
       sleep(2000);
       setLoading(false);
       if (result.data.id) {
-        setTrackData(result.data);
+        let data = result.data.reverse()
+        setTrackData(data);
       } else {
         throw new Error("ไม่พบข้อมูล");
       }
@@ -215,7 +216,7 @@ function ComplainTrack() {
         </div>
         <div style={{ marginTop: "1rem" }} className="complain-form-body-wrapper">
           <div className="complain-form-body">
-            { trackData.history.reverse().map((elem) => {
+            { trackData.history.map((elem) => {
               return (<div key={uuidv4().replaceAll("-", "")}>
                   <div className="complain-from-group">
                     <div className="complain-input-group">

@@ -215,7 +215,7 @@ function ComplainTrack() {
         </div>
         <div style={{ marginTop: "1rem" }} className="complain-form-body-wrapper">
           <div className="complain-form-body">
-            { trackData.history.map((elem) => {
+            { trackData.history.reverse().map((elem) => {
               return (<div key={uuidv4().replaceAll("-", "")}>
                   <div className="complain-from-group">
                     <div className="complain-input-group">

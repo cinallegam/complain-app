@@ -40,7 +40,7 @@ function ComplainList() {
   const revokeHandle = async (id) => {
     let cf = confirm(`ยืนยันการยกเลิกเรื่องร้องทุกข์หมายเลข ${id}`);
     if(cf) {
-      await axios.delete(`${mainURL}/report/${id}`, {
+      await axios.delete(`${mainURL}/report`, { id: id, progress: "z" }, {
         headers: { Authorization: localStorage.getItem("atks") }
       });
       fetchData();
@@ -50,7 +50,7 @@ function ComplainList() {
   const invokeHandle = async (id) => {
     let cf = confirm(`ยืนยันการเปลี่ยนสถานะเรื่องร้องทุกข์หมายเลข ${id}`);
     if(cf) {
-      await axios.put(`${mainURL}/report`, { id: id, permission: "Invoke" }, {
+      await axios.put(`${mainURL}/report`, { id: id, progress: "w" }, {
         headers: { Authorization: localStorage.getItem("atks") }
       });
       fetchData();

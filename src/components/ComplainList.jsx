@@ -61,6 +61,7 @@ function ComplainList() {
     const results = await axios.get(`${mainURL}/report`, { headers: { Authorization: localStorage.getItem("atks") } });
     let data = results.data.map(elem => ({...elem, createdAt_: new Date(elem.createdAt).toLocaleString("th-TH", { dateStyle: "medium" }), progress_: convertProgress(elem.progress) }))
     setData(data);
+    console.log(data)
   };
 
   useEffect(() => {

@@ -79,7 +79,7 @@ function App() {
       const accessToken = localStorage.getItem("atks");
       if (accessToken) {
         if (!user.id && !user.username && !user.name && !user.role) {
-          let result = await axios.get("http://localhost:3000/api/v1/staff/profile", {
+          let result = await axios.get(`${mainURL}/staff/profile`, {
             headers: { Authorization: localStorage.getItem("atks") }
           });
           setUser({ id: result.data.id, username: result.data.username, name: result.data.name, role: result.data.role });

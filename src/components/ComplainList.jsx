@@ -3,11 +3,13 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
 import Context from "../libs/Context";
+import Loading from "./Loading";
 
 function ComplainList() {
   const { user, mainURL } = useContext(Context);
   const [ data, setData ] = useState([]);
   const navigate = useNavigate();
+  const [ loading, setLoading ] = useState(true);
 
   const convertProgress = symbol => {
     let progress = "";
@@ -58,10 +60,11 @@ function ComplainList() {
   }
 
   const fetchData = async () => {
+    setLoading(true);
     const results = await axios.get(`${mainURL}/report`, { headers: { Authorization: localStorage.getItem("atks") } });
     let data = results.data.map(elem => ({...elem, createdAt_: new Date(elem.createdAt).toLocaleString("th-TH", { dateStyle: "medium" }), progress_: convertProgress(elem.progress) }))
     setData(data);
-    console.log(data)
+    setLoading(false)
   };
 
   useEffect(() => {
@@ -104,7 +107,10 @@ function ComplainList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagination.row, pagination.select, data.length, filter]);
 
-  return (
+  return (<>
+    { loading ?
+    <Loading />
+    :
     <div className="complain-table-main-container">
       <div className="complain-table-wrapper">
         <h2>รายการเรื่องราวร้องทุกข์</h2>
@@ -215,7 +221,8 @@ function ComplainList() {
       </div>
       <div className="complain-table-pagination">{page}</div>
     </div>
-  );
+    }
+  </>);
 }
 
 export default ComplainList;

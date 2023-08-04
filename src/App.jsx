@@ -67,7 +67,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const mainURL = "https://deluxe-pasca-bea64f.netlify.app/api/v1";
+  const mainURL = "https://complain-api.netlify.app/api/v1";
   // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState("");
   const [successDetail, setSuccessDetail] = useState({ message: "", redirect: "" });

@@ -327,7 +327,7 @@ function ComplainForm() {
           <div className="horizontal-divider"></div>
         </div>
       </div>
-      { localStorage.getItem("atks") && user.id && user.username && user.name && user.role ? (
+      { localStorage.getItem("atks") ? (
         <div className="complain-form-body-wrapper">
           <div className="complain-form-body">
             <div className="horizontal-divider"></div>

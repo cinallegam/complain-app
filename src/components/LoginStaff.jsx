@@ -53,7 +53,9 @@ function LoginStaff() {
     return tag;
   };
   useEffect(() => {
-    if (localStorage.getItem("atks") && user.id && user.username && user.name && user.role) {
+    if (localStorage.getItem("atks")
+    // && user.id && user.username && user.name && user.role
+    ) {
       navigate("/list", { replace: false });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -51,14 +51,21 @@ function ComplainDetail() {
   yearList.sort();
 
   const fetchHistory = async () => {
-    const results = await axios.get(`${mainURL}/history/${state?.data.id}`, {
-      headers: { Authorization: localStorage.getItem("atks") },
-    });
-    setHistoryStore(results.data);
+    try {
+      const results = await axios.get(`${mainURL}/history/${state?.data.id}`, {
+        headers: { Authorization: localStorage.getItem("atks") },
+      });
+      setHistoryStore(results.data);
+    } catch (error) {
+      localStorage.removeItem("atks")
+      console.log(error)
+    }
   };
 
   useEffect(() => {
-    if (localStorage.getItem("atks") && user.id && user.username && user.name && user.role && state?.data.id) {
+    if (localStorage.getItem("atks") 
+    // && user.id && user.username && user.name && user.role && state?.data.id
+    ) {
       fetchHistory();
     } else {
       navigate("/login", { replace: true });

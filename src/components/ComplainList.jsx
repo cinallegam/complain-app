@@ -60,15 +60,22 @@ function ComplainList() {
   }
 
   const fetchData = async () => {
-    setLoading(true);
-    const results = await axios.get(`${mainURL}/report`, { headers: { Authorization: localStorage.getItem("atks") } });
-    let data = results.data.map(elem => ({...elem, createdAt_: new Date(elem.createdAt).toLocaleString("th-TH", { dateStyle: "medium" }), progress_: convertProgress(elem.progress) }))
-    setData(data);
-    setLoading(false)
+    try {
+      setLoading(true);
+      const results = await axios.get(`${mainURL}/report`, { headers: { Authorization: localStorage.getItem("atks") } });
+      let data = results.data.map(elem => ({...elem, createdAt_: new Date(elem.createdAt).toLocaleString("th-TH", { dateStyle: "medium" }), progress_: convertProgress(elem.progress) }))
+      setData(data);
+      setLoading(false)
+    } catch (error) {
+      localStorage.removeItem("atks")
+      console.log(error)
+    }
   };
 
   useEffect(() => {
-    if (localStorage.getItem("atks") && user.id && user.username && user.name && user.role) {
+    if (localStorage.getItem("atks") 
+    // && user.id && user.username && user.name && user.role
+    ) {
       fetchData();
     } else {
       navigate("/login", { replace: true });

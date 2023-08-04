@@ -77,6 +77,7 @@ function App() {
   const fetchData = async () => {
     try {
       const accessToken = localStorage.getItem("atks");
+      console.log(accessToken)
       if (accessToken) {
         if (!user.id && !user.username && !user.name && !user.role) {
           let result = await axios.get(`${mainURL}/staff/profile`, {

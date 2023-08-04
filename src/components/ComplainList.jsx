@@ -40,22 +40,32 @@ function ComplainList() {
   };
 
   const revokeHandle = async (id) => {
-    let cf = confirm(`ยืนยันการยกเลิกเรื่องร้องทุกข์หมายเลข ${id}`);
-    if(cf) {
-      await axios.put(`${mainURL}/report`, { id: id, progress: "z" }, {
-        headers: { Authorization: localStorage.getItem("atks") }
-      });
-      fetchData();
+    try {
+      let cf = confirm(`ยืนยันการยกเลิกเรื่องร้องทุกข์หมายเลข ${id}`);
+      if(cf) {
+        setLoading(true);
+        await axios.put(`${mainURL}/report`, { id: id, progress: "z" }, {
+          headers: { Authorization: localStorage.getItem("atks") }
+        });
+        fetchData();
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
   
   const invokeHandle = async (id) => {
-    let cf = confirm(`ยืนยันการเปลี่ยนสถานะเรื่องร้องทุกข์หมายเลข ${id}`);
-    if(cf) {
-      await axios.put(`${mainURL}/report`, { id: id, progress: "w" }, {
-        headers: { Authorization: localStorage.getItem("atks") }
-      });
-      fetchData();
+    try {
+      let cf = confirm(`ยืนยันการเปลี่ยนสถานะเรื่องร้องทุกข์หมายเลข ${id}`);
+      if(cf) {
+        setLoading(true);
+        await axios.put(`${mainURL}/report`, { id: id, progress: "w" }, {
+          headers: { Authorization: localStorage.getItem("atks") }
+        });
+        fetchData();
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 

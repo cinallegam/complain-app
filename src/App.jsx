@@ -83,7 +83,6 @@ function App() {
             headers: { Authorization: localStorage.getItem("atks") }
           });
           setUser({ id: result.data.id, username: result.data.username, name: result.data.name, role: result.data.role });
-          console.log(result)
         }
       }
     } catch (error) {

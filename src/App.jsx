@@ -77,13 +77,13 @@ function App() {
   const fetchData = async () => {
     try {
       const accessToken = localStorage.getItem("atks");
-      console.log(accessToken)
       if (accessToken) {
         if (!user.id && !user.username && !user.name && !user.role) {
           let result = await axios.get(`${mainURL}/staff/profile`, {
             headers: { Authorization: localStorage.getItem("atks") }
           });
           setUser({ id: result.data.id, username: result.data.username, name: result.data.name, role: result.data.role });
+          console.log(result)
         }
       }
     } catch (error) {

@@ -3,7 +3,7 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
 import Context from "../libs/Context";
-import Loading from "./Loading";
+import Loading from "../Pages/Loading";
 
 function ComplainList() {
   const { user, mainURL } = useContext(Context);

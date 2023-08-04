@@ -101,7 +101,7 @@ function App() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   return (
     <Context.Provider value={{ successDetail, setSuccessDetail, user, setUser, mainURL }}>

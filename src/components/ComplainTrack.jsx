@@ -38,8 +38,8 @@ function ComplainTrack() {
       sleep(2000);
       setLoading(false);
       if (result.data.id) {
-        let data = {...result.data, history: result.data.history.reverse()}
         console.log(result.data)
+        let data = {...result.data, history: result.data.history.reverse()}
         setTrackData(data);
       } else {
         throw new Error("ไม่พบข้อมูล");

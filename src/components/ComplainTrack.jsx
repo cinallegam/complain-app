@@ -250,6 +250,8 @@ function ComplainTrack() {
                       ) : null }
                     </span>
                   </div>
+                <div className="horizontal-divider" style={{ marginBlock: "1rem" }}></div>
+
                 </div>
               );
             })}

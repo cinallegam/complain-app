@@ -39,7 +39,7 @@ function Navbar() {
 
   const StaffMenu = () => {
     let tag = <></>;
-    if (localStorage.getItem("atks") && user.id && user.username && user.name && user.name) {
+    if (localStorage.getItem("atks")) {
       tag = (<>
         <div className={menuToggle ? "dropdown dropdown-content-show" : "dropdown"}>
           <button onClick={ () => setDropdownToggle(prev => ({ complainList: !prev.complainList, complainWeb: false, setting: false })) }>

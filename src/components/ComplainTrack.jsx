@@ -33,9 +33,7 @@ function ComplainTrack() {
     try {
       setLoading(true);
       setAlert({ type: "", message: "" });
-      const result = await axios.get(`${mainURL}/track/${track}`, {
-        headers: { Authorization: localStorage.getItem("atks") },
-      });
+      const result = await axios.get(`${mainURL}/track/${track}`);
       if (result.status !== 200) throw new Error(result.data);
       sleep(2000);
       setLoading(false);

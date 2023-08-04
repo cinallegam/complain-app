@@ -56,6 +56,7 @@ function ComplainDetail() {
         headers: { Authorization: localStorage.getItem("atks") },
       });
       setHistoryStore(results.data);
+      console.log(results.data.history)
     } catch (error) {
       localStorage.removeItem("atks")
       console.log(error)

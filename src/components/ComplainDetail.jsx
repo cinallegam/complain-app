@@ -55,8 +55,7 @@ function ComplainDetail() {
       const results = await axios.get(`${mainURL}/history/${state?.data.id}`, {
         headers: { Authorization: localStorage.getItem("atks") },
       });
-      setHistoryStore(results.data);
-      console.log(results.data.history)
+      setHistoryStore(results.data.history);
     } catch (error) {
       localStorage.removeItem("atks")
       console.log(error)
